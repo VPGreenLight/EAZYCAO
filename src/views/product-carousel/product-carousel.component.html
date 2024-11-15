@@ -1,0 +1,17 @@
+<div class="carousel">
+    <button class="prev-arrow" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+  
+    <div class="carousel-track">
+      <div class="slide" *ngFor="let product of products">
+        <div class="product-card">
+          <img [src]="product.image" alt="{{ product.name }}" />
+          <span class="badge">NEW</span>
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.price | currency: 'VND' }}</p>
+          <button class="view-btn">VIEW</button>
+        </div>
+      </div>
+    </div>
+  
+    <button class="next-arrow" (click)="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+  </div>

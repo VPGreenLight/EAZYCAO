@@ -11,6 +11,7 @@ import { FooterComponent } from '../layouts/footer/footer.component';
 import { ApiService } from '../api/api.service';
 import { AuthService } from '../services/auth.service';
 import { RegisterComponent } from '../views/register/register.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { RegisterComponent } from '../views/register/register.component';
     RouterModule,
     RouterOutlet,
     HttpClientModule,
+    SlickCarouselModule
   ],
   template: `<router-outlet></router-outlet>`,
   templateUrl: './app.component.html',

@@ -1,0 +1,79 @@
+<div class="product-detail-container" *ngIf="product">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb">
+      <a href="/home">Trang chủ</a> / <a href="/products">Sản phẩm</a> / <span>Chi tiết sản phẩm</span>
+    </nav>
+  
+    <div class="product-main">
+      <!-- Thông tin sản phẩm chính -->
+      <div class="product-image">
+        <img [src]="product.image || 'assets/default-placeholder.jpg'" alt="{{ product.name }}" />
+      </div>
+      <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <p class="price">Giá: {{ product.price * 1000 | currency: 'VND' }}</p>
+        
+        <div class="quantity">
+          <label>Số Lượng:</label>
+          <input type="number" [(ngModel)]="quantity" min="1" />
+        </div>
+        
+        <p class="stock">Số Lượng Còn Lại: {{ product.quantity }}</p>
+        <p class="description">{{ product.description }}</p>
+        
+        <!-- Nút chức năng -->
+        <div class="buttons">
+          <button class="favorite-btn">
+            <i class="fas fa-heart"></i>
+          </button>
+          <button class="add-to-cart-btn">
+            Thêm vào <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Tabs để chuyển đổi -->
+    <div class="tabs">
+      <button [class.active]="selectedTab === 'related'" (click)="selectTab('related')">Sản Phẩm Liên Quan</button>
+      <button [class.active]="selectedTab === 'details'" (click)="selectTab('details')">Chi Tiết Sản Phẩm</button>
+    </div>
+  
+    <!-- Nội dung Tabs -->
+    <div class="tab-content">
+      <div *ngIf="selectedTab === 'related'" class="related-products">
+        <!-- Hiển thị sản phẩm liên quan -->
+        <div *ngFor="let item of relatedProducts" class="related-product-card">
+          <img [src]="item.image" alt="{{ item.name }}" />
+          <p>{{ item.name }}</p>
+          <p>{{ item.price | currency: 'VND' }}</p>
+        </div>
+      </div>
+      
+      <div *ngIf="selectedTab === 'details'" class="product-details-table">
+        <table>
+          <tr>
+            <td><strong>Tên Sản Phẩm:</strong></td>
+            <td>{{ product.name }}</td>
+          </tr>
+          <tr>
+            <td><strong>Thể Loại:</strong></td>
+            <td>{{ product.category }}</td>
+          </tr>
+          <tr>
+            <td><strong>Hãng:</strong></td>
+            <td>{{ product.brand }}</td>
+          </tr>
+          <tr>
+            <td><strong>Mô Tả:</strong></td>
+            <td>{{ product.description }}</td>
+          </tr>
+          <tr>
+            <td><strong>Số Lượng Hiện Có:</strong></td>
+            <td>{{ product.quantity }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  

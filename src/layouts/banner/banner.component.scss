@@ -1,26 +1,25 @@
 .promo-banner {
     display: flex;
     align-items: center;
-    background-color: black;
+    background-image: url('../../assets/0h9fmpeo.png');
+    background-size: cover;
+    background-position: center;
     color: white;
     padding: 20px;
     margin-bottom: 20px;
 
     img {
-    max-width: 100px;
-    margin-right: 20px;
+        max-width: 100px;
+        margin-right: 20px;
     }
 
     .promo-text {
-    h1 {
-        font-size: 36px;
-        color: #ff0000;
-    }
-
-    p {
-        font-size: 18px;
-    }
-    }
+        h1 {
+            font-size: 36px;
+            color: #ff0000;
+        }
+        p {
+            font-size: 18px;
+        }
+    } 
 }
-
-  

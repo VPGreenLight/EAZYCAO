@@ -9,6 +9,7 @@ import { AuthGuard } from '../services/auth.guard';
 import { AppComponent } from './app.component';
 import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
+import { ProductDetailComponent } from '../views/product-detail/product-detail.component';
 
 // export const routes: Routes = [
 //   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -27,6 +28,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'products', component: ProductComponent },
+      { path: 'products/:id', component: ProductDetailComponent },
       { path: 'cart', component: CartComponent },
       { path: 'settings', component: SettingComponent, canActivate: [AuthGuard] },
       { path: 'user', component: UserComponent, canActivate: [AuthGuard] },

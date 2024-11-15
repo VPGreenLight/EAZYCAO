@@ -1,0 +1,176 @@
+.product-detail-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  
+    .breadcrumb {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+  
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+    }
+  
+    .product-main {
+      display: flex;
+      gap: 20px;
+  
+      .product-image img {
+        width: 300px;
+        height: auto;
+        border: 1px solid #ddd;
+      }
+  
+      .product-info {
+        flex-grow: 1;
+  
+        h2 {
+          font-size: 24px;
+          color: #333;
+        }
+  
+        .price {
+          font-size: 20px;
+          color: #e74c3c;
+          font-weight: bold;
+        }
+  
+        .quantity {
+          margin: 10px 0;
+  
+          label {
+            font-weight: bold;
+          }
+  
+          input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+            margin-left: 10px;
+          }
+        }
+  
+        .stock {
+          font-size: 16px;
+          color: #666;
+        }
+  
+        .description {
+          margin-top: 10px;
+          color: #333;
+        }
+  
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+          
+            .favorite-btn,
+            .add-to-cart-btn {
+              display: flex;
+              align-items: center;
+              padding: 10px 15px;
+              font-size: 16px;
+              cursor: pointer;
+              border: none;
+              transition: background-color 0.3s ease;
+            }
+          
+            .favorite-btn {
+              background: #f8f9fa;
+              color: #e74c3c; /* Màu đỏ cho biểu tượng trái tim */
+              border: 1px solid #ccc;
+          
+              i {
+                margin-right: 0px;
+              }
+          
+              &:hover {
+                background-color: #f1f1f1;
+              }
+            }
+          
+            .add-to-cart-btn {
+              background: #007bff;
+              color: #fff;
+          
+              i {
+                margin-left: 5px;
+              }
+          
+              &:hover {
+                background-color: #0056b3;
+              }
+            }
+          }
+      }
+    }
+  
+    .tabs {
+      margin-top: 30px;
+      border-bottom: 1px solid #ddd;
+  
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+  
+        &.active {
+          border-bottom: 2px solid #007bff;
+          color: #007bff;
+        }
+  
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+  
+    .tab-content {
+      margin-top: 20px;
+  
+      .related-products {
+        display: flex;
+        gap: 20px;
+  
+        .related-product-card {
+          text-align: center;
+          width: 150px;
+          
+          img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+          }
+  
+          p {
+            margin: 5px 0;
+          }
+        }
+      }
+  
+      .product-details-table {
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+  
+          td {
+            padding: 10px;
+            border: 1px solid #ddd;
+          }
+  
+          strong {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  
