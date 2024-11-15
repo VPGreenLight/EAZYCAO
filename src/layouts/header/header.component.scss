@@ -1,0 +1,44 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+  
+    .logo img {
+      height: 40px;
+    }
+  
+    .search-bar {
+      display: flex;
+      align-items: center;
+  
+      input {
+        padding: 5px;
+        font-size: 14px;
+      }
+  
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+    }
+  
+    .nav-links {
+      a {
+        color: white;
+        margin-left: 15px;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  

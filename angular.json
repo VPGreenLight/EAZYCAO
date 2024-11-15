@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "LoginDemo": {
+    "EAZYCAO": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/login-demo",
+            "outputPath": "dist/EAZYCAO",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,14 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "LoginDemo:build:production"
+              "buildTarget": "EAZYCAO:build:production"
             },
             "development": {
-              "buildTarget": "LoginDemo:build:development"
+              "buildTarget": "EAZYCAO:build:development"
+            },
+            "hmr": {
+              "buildTarget": "EAZYCAO:build:development",
+              "hmr": true
             }
           },
           "defaultConfiguration": "development"
@@ -98,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "7b962b8c-65e2-40ea-bdd5-0fa37538f1a6"
   }
 }

@@ -1,0 +1,77 @@
+<div class="cart-container">
+  <!-- Breadcrumb / Steps -->
+  <div class="breadcrumb" *ngIf="cartItems.length > 0">
+    <span class="active-step">Giỏ hàng</span>
+    <span class="inactive-step">Xác nhận</span>
+    <span class="inactive-step">Thanh toán</span>
+  </div>
+
+  <!-- Check if Cart is Empty -->
+  <div *ngIf="cartItems.length === 0; else cartContent">
+    <!-- Empty Cart Message -->
+    <div class="empty-cart">
+      <h2>Giỏ hàng trống!</h2>
+      <p>Thêm sản phẩm vào giỏ và quay lại trang này để thanh toán nha bạn &lt;3</p>
+      <img src="assets/empty-cart-image.png" alt="Giỏ hàng trống" class="empty-cart-image" />
+    </div>
+  </div>
+
+  <!-- Main Cart Content (Displayed only if there are items in the cart) -->
+  <ng-template #cartContent>
+    <div class="cart-content">
+      <!-- Left: Cart Items -->
+      <div class="cart-items">
+        <h2>Giỏ hàng ({{ cartItems.length }} sản phẩm)</h2>
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <img [src]="item.imageUrl" [alt]="item.name" class="product-image" />
+          <div class="product-details">
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.category }}</p>
+            <span class="stock-status">Tình trạng: <span class="in-stock">Còn hàng</span></span>
+          </div>
+          <div class="product-quantity">
+            <button (click)="decreaseQuantity(item)">-</button> 
+            <span>{{ item.quantity }}</span>
+            <button (click)="increaseQuantity(item)">+</button>
+          </div>
+          <div class="product-price">
+            <span class="current-price">{{ item.price | currency: 'VND' }}</span>
+            <span class="original-price" *ngIf="item.originalPrice">{{ item.originalPrice | currency: 'VND' }}</span>
+            <span class="discount" *ngIf="item.discount">-{{ item.discount }}%</span>
+          </div>
+          <button class="remove-item" (click)="removeItem(item)">🗑️</button>
+        </div>        
+      </div>
+
+      <!-- Right: Payment Summary -->
+      <div class="payment-summary">
+        <div class="summary-row">
+          <label>Bạn có mã ưu đãi?</label>
+          <span class="icon">%</span>
+        </div>
+        <div class="summary-total">
+          <div>
+            <span>Tổng giá trị sản phẩm</span>
+            <span>{{ totalPrice | currency: 'VND' }}</span>
+          </div>
+          <div>
+            <span>Tổng giá trị phải thanh toán</span>
+            <span>{{ totalPayable | currency: 'VND' }}</span>
+          </div>
+          <div>
+            <span>Số dư hiện tại</span>
+            <span>{{ balance | currency: 'VND' }}</span>
+          </div>
+          <div>
+            <span>Số tiền cần nạp thêm</span>
+            <span>{{ totalPayable - balance | currency: 'VND' }}</span>
+          </div>
+        </div>
+        <button class="recharge-btn">🔄 Nạp thêm vào tài khoản</button>
+        <button class="pay-banking-btn">VNPay</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+  

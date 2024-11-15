@@ -1,0 +1,128 @@
+<div id="breadcrumb">
+  <a [routerLink]="['/home']">Trang chủ</a> / Đăng ký
+</div>
+
+<div id="register-form" class="register-container">
+  <h2>ĐĂNG KÝ</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    
+    <!-- Name -->
+    <div class="control-group">
+      <label for="name">Họ và tên</label>
+      <input 
+        type="text" 
+        formControlName="name" 
+        class="form-control" 
+        placeholder="Nhập họ và tên" 
+        aria-label="Họ và tên"
+        required
+      />
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+        <small *ngIf="name?.errors?.['required']">Họ và tên là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="control-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        formControlName="email" 
+        class="form-control" 
+        placeholder="Nhập email" 
+        aria-label="Email"
+        required
+      />
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+        <small *ngIf="email?.errors?.['required']">Email là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Username -->
+    <div class="control-group">
+      <label for="userName">Tên tài khoản</label>
+      <input 
+        type="text" 
+        formControlName="userName" 
+        class="form-control" 
+        placeholder="Nhập tên tài khoản" 
+        aria-label="Tên tài khoản"
+        required
+      />
+      <div *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)" class="text-danger">
+        <small *ngIf="userName?.errors?.['required']">Tên tài khoản là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="control-group">
+      <label for="password">Mật khẩu</label>
+      <input 
+        type="password" 
+        formControlName="password" 
+        class="form-control" 
+        placeholder="Nhập mật khẩu" 
+        aria-label="Mật khẩu"
+        required
+      />
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+        <small *ngIf="password?.errors?.['required']">Mật khẩu là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="control-group">
+      <label for="confirmPassword">Xác nhận mật khẩu</label>
+      <input 
+        type="password" 
+        formControlName="confirmPassword" 
+        class="form-control" 
+        placeholder="Xác nhận mật khẩu" 
+        aria-label="Xác nhận mật khẩu"
+        required
+      />
+      <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" class="text-danger">
+        <small *ngIf="confirmPassword?.errors?.['required']">Xác nhận mật khẩu là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Address -->
+    <div class="control-group">
+      <label for="address">Địa chỉ</label>
+      <input 
+        type="text" 
+        formControlName="address" 
+        class="form-control" 
+        placeholder="Nhập địa chỉ" 
+        aria-label="Địa chỉ"
+        required
+      />
+      <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="text-danger">
+        <small *ngIf="address?.errors?.['required']">Địa chỉ là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="control-group">
+      <label for="phone">Số điện thoại</label>
+      <input 
+        type="text" 
+        formControlName="phone" 
+        class="form-control" 
+        placeholder="Nhập số điện thoại" 
+        aria-label="Số điện thoại"
+        required
+      />
+      <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="text-danger">
+        <small *ngIf="phone?.errors?.['required']">Số điện thoại là bắt buộc.</small>
+      </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button type="submit" class="btn btn-primary btn-register" [disabled]="registerForm.invalid">Đăng ký</button>
+      <span>HOẶC</span>
+      <a [routerLink]="'/login'" class="btn btn-secondary btn-login">Đăng nhập</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,73 @@
+<div id="breadcrumb">
+  <a [routerLink]="['/home']">Trang chủ</a> / Đăng ký
+</div>
+
+<div id="login-form" class="login-container">
+  <h2>ĐĂNG NHẬP</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onLogin()">
+    
+    <!-- Username -->
+    <div class="control-group">
+      <label for="username">Tên tài khoản</label>
+      <input 
+        type="text" 
+        formControlName="username" 
+        class="form-control" 
+        placeholder="Nhập tên tài khoản" 
+        aria-label="Tên tài khoản"
+        required
+      />
+      <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="text-danger">
+        <small *ngIf="username?.errors?.['required']">Tên tài khoản là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="control-group">
+      <label for="password">Mật khẩu <sup>*</sup></label>
+      <input 
+        type="password" 
+        formControlName="password" 
+        class="form-control" 
+        placeholder="Nhập mật khẩu" 
+        aria-label="Mật khẩu"
+        required
+      />
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+        <small *ngIf="password?.errors?.['required']">Mật khẩu là bắt buộc.</small>
+      </div>
+    </div>
+
+    <!-- Captcha -->
+    <div class="control-group">
+      <label for="captcha">Captcha</label>
+      <div class="captcha-container">
+        <img [src]="captchaUrl" alt="Captcha image" class="captcha-image" />
+        <button type="button" (click)="loadCaptcha()" class="refresh-captcha-button" aria-label="Làm mới Captcha">
+            🔄
+        </button>
+      </div>
+      <input 
+        type="text" 
+        formControlName="captcha" 
+        class="form-control" 
+        placeholder="Nhập mã Captcha"
+        aria-label="Captcha"
+        required
+      />
+      <div *ngIf="captcha?.invalid && (captcha?.dirty || captcha?.touched)" class="text-danger">
+        <small *ngIf="captcha?.errors?.['required']">Captcha là bắt buộc.</small>
+      </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button type="submit" class="btn btn-primary btn-login" [disabled]="profileForm.invalid">Đăng nhập</button>
+      <span>HOẶC</span>
+      <a [routerLink]="'/register'" class="btn btn-secondary btn-register">Đăng ký ngay!</a>
+    </div>
+
+    <!-- Forgot Password Link -->
+    <a [routerLink]="'/forgot-password'" class="forgot-password">Quên mật khẩu?</a>
+  </form>
+</div>
