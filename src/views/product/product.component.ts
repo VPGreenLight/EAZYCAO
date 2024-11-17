@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductService, Product, PagedResponse } from '../../services/product.service';
+import { ProductService } from '../../services/product.service';
 import { RouterModule } from '@angular/router';
+import { Product } from '../../interfaces/product.model';
+import { PagedResponse } from '../../interfaces/page.model';
 
 @Component({
   selector: 'app-product',
@@ -29,10 +31,7 @@ export class ProductComponent implements OnInit {
   loadProducts(): void {
     this.productService.getProducts(this.currentPage, this.itemsPerPage).subscribe(
       (response: PagedResponse<Product>) => {
-        this.products = response.data.map(product => ({
-          ...product,
-          price: product.price * 1000 // Tạm thời nhân lên nếu giá trị từ backend nhỏ hơn thực tế
-        }));
+        this.products = response.data;
         this.totalItems = response.totalCount;
         this.totalPages = response.totalPage;
       },

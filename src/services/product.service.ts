@@ -1,33 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;  // Adjusted to match the `image` field in your API
-  expiry: string;
-  quantity: number;
-  category: string;
-  brand: string;
-  createdAt: string;
-  createdBy: string;
-  updatedAt: string;
-  updatedBy: string;
-  deletedAt: string | null;
-  isDelete: boolean;
-  deletedBy: string | null;
-}
-
-export interface PagedResponse<T> {
-  pageIndex: number;
-  pageSize: number;
-  data: T[];
-  totalCount: number;
-  totalPage: number;
-}
+import { Product } from '../interfaces/product.model';
+import { PagedResponse } from '../interfaces/page.model';
 
 @Injectable({
   providedIn: 'root'

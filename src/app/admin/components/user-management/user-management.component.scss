@@ -1,0 +1,30 @@
+.edit-user-form {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+  
+    .form-group {
+      margin-bottom: 15px;
+      label {
+        font-weight: bold;
+      }
+      input, select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+  
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+  
+      button {
+        padding: 10px 20px;
+      }
+    }
+  }
+  

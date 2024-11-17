@@ -10,7 +10,7 @@
         </span>
       </h3>
       <p class="product-description">{{ product.description }}</p>
-      <div class="product-price">{{ product.price | currency: 'VND' }}</div>
+      <div class="product-price">{{ product.price * 1000 | currency: 'VND' }}</div>
       <button class="buy-button">Mua</button>
     </div>
   </div>

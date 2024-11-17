@@ -1,17 +1,44 @@
 <div class="header-container">
-    <div class="logo">
-      <img src="#" alt="EazyCao Logo" />
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Tìm kiếm" />
-      <button type="button">Tìm Kiếm</button>
-    </div>
-    <div class="nav-links">
-      <a href="#">Tài Khoản</a>
-      <a href="#">Hỗ Trợ</a>
-      <a href="#">Liên Hệ</a>
-      <a href="#">Bài Đăng</a>
-      <a [routerLink]="'/login'">Đăng Nhập</a>
-    </div>
+  <div class="logo">
+    <img src="#" alt="EazyCao Logo" />
   </div>
-  
+
+  <div class="search-bar">
+    <input type="text" placeholder="Tìm kiếm" />
+    <button type="button">
+      <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
+    </button>
+  </div>
+
+  <div class="nav-links">
+    <!-- Luôn hiển thị các liên kết -->
+    <a href="#">Tài Khoản</a>
+    <a href="#">Hỗ Trợ</a>
+    <a href="#">Liên Hệ</a>
+    <a href="#">Bài Đăng</a>
+
+    <!-- Dropdown menu cho người dùng đã đăng nhập -->
+    <ng-container *ngIf="isLoggedIn">
+      <div class="user-dropdown" (click)="toggleDropdown()">
+        <span>{{ userName }}</span>
+        <i class="fas fa-caret-down"></i>
+        <ul *ngIf="isDropdownVisible" class="dropdown-menu">
+          <li>
+            <span>Số dư tài khoản</span>
+            <strong class="account-balance">{{ userMoney | currency: 'VND' }}</strong>
+          </li>
+          <li><a [routerLink]="'/profile'">Quản lý tài khoản</a></li>
+          <li><a [routerLink]="'/orders'">Lịch sử đơn hàng</a></li>
+          <li><a [routerLink]="'/wishlist'">Sản phẩm yêu thích</a></li>
+          <li><a href="#" (click)="onLogout()">Đăng xuất</a></li>
+        </ul>
+      </div>
+    </ng-container>
+    
+    <!-- Hiển thị liên kết đăng nhập nếu chưa đăng nhập -->
+    <ng-container *ngIf="!isLoggedIn">
+      <a [routerLink]="'/login'">Đăng Nhập</a>
+    </ng-container>
+  </div>
+</div>
+

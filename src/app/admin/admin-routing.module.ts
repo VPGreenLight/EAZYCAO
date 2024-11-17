@@ -12,15 +12,15 @@ import { FooterManagementComponent } from './components/footer-management/footer
 import { AdvertisingManagementComponent } from './components/advertising-management/advertising-management.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { AuthGuard } from '../../services/auth.guard';
-import { RoleGuard } from '../../services/role.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard, RoleGuard],
+    canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
     children: [
+      { path: '', redirectTo: 'admin', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'user-management', component: UserManagementComponent },
       { path: 'order-history', component: OrderHistoryComponent },
