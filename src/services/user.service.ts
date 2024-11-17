@@ -16,14 +16,22 @@ export class UserService {
   }
 
   createUser(newUser: User): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/users`, newUser);
+    return this.http.post<User>(`${this.baseUrl}`, newUser);
   }
 
   updateUser(userId: number, updatedUser: User): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/users/${userId}`, updatedUser);
+    return this.http.put<void>(`${this.baseUrl}/${userId}`, updatedUser);
   }
 
   deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${userId}`);
+  }
+
+  getUserProfile(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/me`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
   }
 }

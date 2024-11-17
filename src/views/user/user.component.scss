@@ -1,0 +1,93 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  
+    /* Tổng quan */
+    .overview {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+      .overview-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+  
+        .overview-item {
+          flex: 1 1 45%; /* Mỗi mục chiếm khoảng 45% chiều rộng */
+          font-size: 1rem;
+  
+          strong {
+            font-weight: bold;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  
+    /* Form chỉnh sửa */
+    .personal-info {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+  
+        .form-group {
+          display: flex;
+          flex-direction: column;
+  
+          label {
+            font-weight: bold;
+            margin-bottom: 5px;
+          }
+  
+          input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+          }
+        }
+  
+        .form-actions {
+          grid-column: 1 / -1; /* Nút hành động chiếm toàn bộ chiều ngang */
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+  
+          button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+  
+            &.save-btn {
+              background-color: #007bff;
+              color: #fff;
+            }
+  
+            &.delete-btn {
+              background-color: #dc3545;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+  

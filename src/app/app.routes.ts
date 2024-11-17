@@ -30,8 +30,10 @@ export const routes: Routes = [
       { path: 'products', component: ProductComponent },
       { path: 'products/:id', component: ProductDetailComponent },
       { path: 'cart', component: CartComponent },
-      { path: 'settings', component: SettingComponent, canActivate: [AuthGuard] },
+      { path: 'support', component: SettingComponent, canActivate: [AuthGuard] },
       { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+      //{ path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+      //{ path: 'fav', component: FavProductComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'products', pathMatch: 'full' },
     ]
   },

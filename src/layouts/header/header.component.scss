@@ -13,8 +13,8 @@
   .search-bar {
     display: flex;
     align-items: center;
-    background-color: #f5faff; /* Màu nền nhẹ */
-    border: 1px solid #007bff; /* Viền xanh */
+    background-color: white; /* Màu nền nhẹ */
+    border: 1px solid #333; /* Viền xanh */
     border-radius: 20px; /* Bo tròn nhẹ hơn */
     padding: 3px; /* Thu nhỏ khoảng cách bên trong */
     max-width: 400px; /* Giới hạn chiều rộng */
@@ -82,10 +82,6 @@
         margin-right: 5px;
       }
 
-      .fas fa-caret-down {
-        color: rgb(0, 0, 0);
-      }
-
       .dropdown-menu {
         position: absolute;
         top: 100%;
@@ -116,8 +112,8 @@
         }
 
         .account-balance {
-          font-weight: normal; /* Đồng bộ kiểu font */
-          color: black; /* Màu font đồng bộ với danh sách dropdown */
+          font-weight: bold; /* Đồng bộ kiểu font */
+          color: rgb(17, 193, 37); /* Màu font đồng bộ với danh sách dropdown */
         }
       }
     }

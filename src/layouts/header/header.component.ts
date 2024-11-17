@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../api/api.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   userAvatar: string = '';
   defaultAvatar: string = '../../assets/userAva.png'; // Default avatar
 
-  constructor(private apiService: ApiService, private authService: AuthService, private router: Router) {}
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -33,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   loadUserData(): void {
-    this.apiService.getUserProfile().subscribe({
+    this.userService.getUserProfile().subscribe({
       next: (user) => {
         this.userName = user.name || user.userName;
         this.userMoney = user.money;

@@ -12,10 +12,9 @@
 
   <div class="nav-links">
     <!-- Luôn hiển thị các liên kết -->
-    <a href="#">Tài Khoản</a>
-    <a href="#">Hỗ Trợ</a>
-    <a href="#">Liên Hệ</a>
-    <a href="#">Bài Đăng</a>
+    <a [routerLink]="'/support'">Hỗ Trợ</a>
+    <a [routerLink]="'/comm'">Liên Hệ</a>
+    <a [routerLink]="'/blog'">Bài Đăng</a>
 
     <!-- Dropdown menu cho người dùng đã đăng nhập -->
     <ng-container *ngIf="isLoggedIn">
@@ -23,13 +22,15 @@
         <span>{{ userName }}</span>
         <i class="fas fa-caret-down"></i>
         <ul *ngIf="isDropdownVisible" class="dropdown-menu">
-          <li>
-            <span>Số dư tài khoản</span>
-            <strong class="account-balance">{{ userMoney | currency: 'VND' }}</strong>
+          <li><a [routerLink]="'/money'">
+            <p><span>Số dư tài khoản</span></p>
+            <p><strong class="account-balance">{{ userMoney * 1000 | currency: 'VND' }}</strong>
+              <i class="fas fa-plus-square"  style="color: rgb(17, 193, 37); margin-left: 10px; font-size: 20px;"></i></p>
+            </a>
           </li>
-          <li><a [routerLink]="'/profile'">Quản lý tài khoản</a></li>
+          <li><a [routerLink]="'/user'">Quản lý tài khoản</a></li>
           <li><a [routerLink]="'/orders'">Lịch sử đơn hàng</a></li>
-          <li><a [routerLink]="'/wishlist'">Sản phẩm yêu thích</a></li>
+          <li><a [routerLink]="'/fav'">Sản phẩm yêu thích</a></li>
           <li><a href="#" (click)="onLogout()">Đăng xuất</a></li>
         </ul>
       </div>
