@@ -21,15 +21,4 @@ export class ApiService {
   getCaptcha(): Observable<any> {
     return this.http.get(`${this.baseUrl}/auth/captcha/refresh`, { withCredentials: true });
   }
-
-  getUserProfile(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    });
-  }
-  // getUserProfile(): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}/users/me`);
-  // }
 }

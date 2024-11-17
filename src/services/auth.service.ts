@@ -40,8 +40,8 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.clear(); // Xóa token và thông tin người dùng
-        this.router.navigate(['/login']); // Điều hướng về trang đăng nhập
+        localStorage.clear();
+        this.router.navigate(['/login']);
     }
 
 }

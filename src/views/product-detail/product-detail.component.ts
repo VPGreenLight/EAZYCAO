@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../interfaces/product.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,7 +24,8 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private prodService: ProductService
+    private prodService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -57,5 +59,17 @@ export class ProductDetailComponent implements OnInit {
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
+  }
+
+  addToCart(productId: number, quantity: number) {
+    this.cartService.addToCart(productId, quantity).subscribe(
+      () => {
+        alert('Thêm vào giỏ hàng thành công!');
+      },
+      (error) => {
+        console.error('Lỗi khi thêm vào giỏ hàng:', error);
+        alert('Không thể thêm vào giỏ hàng. Vui lòng thử lại sau.');
+      }
+    );
   }
 }
