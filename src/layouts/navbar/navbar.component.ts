@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -12,12 +14,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent{
-  cartItemCount: number = 0; // Biến để lưu số lượng sản phẩm trong giỏ hàng
-  theCaoExpanded: boolean = false; // Trạng thái mở/đóng của danh mục Thẻ Cào
-  giaiTriExpanded: boolean = false; // Trạng thái mở/đóng của danh mục Giải Trí
+export class NavbarComponent implements OnInit{
+  cartItemCount: number = 0; 
+  theCaoExpanded: boolean = false; 
+  giaiTriExpanded: boolean = false;
+  laAdmin: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    this.checkUserRole();
+  }
 
   // Hàm toggle để mở/đóng các danh mục
   toggleCategory(category: string): void {
@@ -27,6 +36,19 @@ export class NavbarComponent{
       this.giaiTriExpanded = !this.giaiTriExpanded;
     }
   }
+
+  checkUserRole(): void {
+    this.userService.getUserProfile().subscribe(
+      (user) => {
+        this.laAdmin = user.roleId === 1;
+        console.log("Role của bạn là:", user.roleId);
+      },
+      (error) => {
+        console.error('Lỗi khi kiểm tra role:', error);
+      }
+    );
+  }
+
   // ngOnInit(): void {
   //   this.updateCartItemCount();
 

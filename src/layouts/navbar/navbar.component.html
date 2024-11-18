@@ -30,4 +30,12 @@
       <li><a href="#">Netflix</a></li>
     </ul>
   </div>
+
+  <!-- Hiển thị Dashboard nếu là Admin -->
+  <div class="dashboard" *ngIf="laAdmin">
+    <h3>
+      <i class="fas fa-chart-line"></i>
+      <a routerLink="/admin">Dashboard</a>
+    </h3>
+  </div>
 </div>

@@ -84,5 +84,26 @@
       }
     }
   }
+  // **Thêm CSS dành riêng cho mục Dashboard**
+  .dashboard {
+    margin-top: 20px; /* Giãn cách giống các mục khác */
+    h3 {
+      font-size: 16px; /* Giữ kích thước tương tự */
+      display: flex;
+      align-items: center; /* Căn giữa icon và text */
+      gap: 45px; /* Khoảng cách giữa icon và text */
+      font-weight: bold;
+
+      a {
+        text-decoration: none;
+        color: #000000; /* Màu tím của text Dashboard */
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #000000; /* Thay đổi màu khi hover */
+        }
+      }
+    }
+  }
 }
 

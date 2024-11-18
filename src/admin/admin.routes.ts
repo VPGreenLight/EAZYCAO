@@ -6,6 +6,7 @@ import { CustomerSupportComponent } from "../views/customer-support/customer-sup
 import { OrderHistoryComponent } from "../views/order-history/order-history.component";
 import { ProductManagementComponent } from "../views/product-management/product-management.component";
 import { UserManagementComponent } from "../views/user-management/user-management.component";
+import { UnauthorizedComponent } from "../views/unauthorize/unauthorize.component";
 
 export const adminRoutes: Routes = [
   {
@@ -20,5 +21,9 @@ export const adminRoutes: Routes = [
       { path: 'customer-support', component: CustomerSupportComponent },
       { path: 'product-management', component: ProductManagementComponent }
     ]
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
   }
 ];
