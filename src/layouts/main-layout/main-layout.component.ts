@@ -17,7 +17,6 @@ import { ProductCarouselComponent } from "../../views/product-carousel/product-c
         <app-header></app-header>
         <app-banner></app-banner>
         <app-product-carousel></app-product-carousel>
-        <!-- Router Outlet for Dynamic Component Loading -->
         <router-outlet></router-outlet>
         </div>
     </div>

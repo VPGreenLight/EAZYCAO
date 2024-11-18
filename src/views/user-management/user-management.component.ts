@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { User } from '../../../../interfaces/user.model';
-import { UserService } from '../../../../services/user.service';
+import { User } from '../../interfaces/user.model';
+import { UserService } from '../../services/user.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({

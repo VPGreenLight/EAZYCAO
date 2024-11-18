@@ -4,7 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product.model';
 import { PagedResponse } from '../../interfaces/page.model';
-import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
+import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-product',

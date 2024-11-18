@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../interfaces/product.model';
 import { CartService } from '../../services/cart.service';
-import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
+import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-product-detail',

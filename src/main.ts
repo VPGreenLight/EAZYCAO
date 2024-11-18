@@ -4,12 +4,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { CurrencySuffixPipe } from './app/pipes/currency-suffix.pipe'; // Đường dẫn tới pipe
+import { CurrencySuffixPipe } from './services/pipes/currency-suffix.pipe'; // Đường dẫn tới pipe
+import { adminRoutes } from './admin/admin.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor])),
-    provideRouter(routes),
+    provideRouter([...routes, ...adminRoutes]),
     CurrencySuffixPipe,
   ],
 }).catch((err) => console.error(err));

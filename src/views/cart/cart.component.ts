@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart.model';
-import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
+import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-cart',

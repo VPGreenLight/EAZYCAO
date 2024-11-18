@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiService } from '../../api/api.service';
+import { ApiService } from '../../services/api/api.service';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({

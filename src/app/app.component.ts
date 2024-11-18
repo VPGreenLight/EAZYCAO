@@ -8,7 +8,7 @@ import { NavbarComponent } from '../layouts/navbar/navbar.component';
 import { BannerComponent } from '../layouts/banner/banner.component';
 import { ProductComponent } from '../views/product/product.component';
 import { FooterComponent } from '../layouts/footer/footer.component';
-import { ApiService } from '../api/api.service';
+import { ApiService } from '../services/api/api.service';
 import { AuthService } from '../services/auth.service';
 import { RegisterComponent } from '../views/register/register.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
@@ -24,7 +24,6 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     SlickCarouselModule
   ],
   template: `<router-outlet></router-outlet>`,
-  templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [ApiService]
 })

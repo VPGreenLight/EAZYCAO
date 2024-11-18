@@ -3,7 +3,7 @@ import { FavProductService } from '../../services/fav-product.service';
 import { CartService } from '../../services/cart.service';
 import { FavProduct } from '../../interfaces/fav-product.model';
 import { CommonModule } from '@angular/common';
-import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
+import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-fav-product',

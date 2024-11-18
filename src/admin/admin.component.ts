@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { ApiService } from "../../api/api.service";
 import { RouterModule, RouterOutlet } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { Component } from "@angular/core";
+import { ApiService } from "../services/api/api.service";
 
 @Component({
     selector: 'admin-root',
@@ -14,7 +14,6 @@ import { Component } from "@angular/core";
       HttpClientModule
     ],
     template: `<router-outlet></router-outlet>`,
-    templateUrl: './admin.component.html',
     styleUrls: ['./admin.component.scss'],
     providers: [ApiService]
   })
