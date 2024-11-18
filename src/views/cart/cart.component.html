@@ -34,7 +34,7 @@
             <button (click)="increaseQuantity(item)">+</button>
           </div>
           <div class="product-price">
-            <span class="current-price">{{ item.price | currency: 'VND' }}</span>
+            <span class="current-price">{{ item.price | currencySuffix }}</span>
             <span class="original-price" *ngIf="item.price">{{ item.price | currency: 'VND' }}</span>
           </div>
           <button class="remove-item" (click)="removeItem(item)">🗑️</button>
@@ -50,19 +50,19 @@
         <div class="summary-total">
           <div>
             <span>Tổng giá trị sản phẩm</span>
-            <span>{{ totalPrice | currency: 'VND' }}</span>
+            <span>{{ totalPrice | currencySuffix }}</span>
           </div>
           <div>
             <span>Tổng giá trị phải thanh toán</span>
-            <span>{{ totalPrice | currency: 'VND' }}</span>
+            <span>{{ totalPrice | currencySuffix }}</span>
           </div>
           <div>
             <span>Số dư hiện tại</span>
-            <span>{{ balance | currency: 'VND' }}</span>
+            <span>{{ balance | currencySuffix }}</span>
           </div>
           <div>
             <span>Số tiền cần nạp thêm</span>
-            <span>{{ totalPayable - balance | currency: 'VND' }}</span>
+            <span>{{ totalPayable - balance | currencySuffix }}</span>
           </div>
         </div>
         <button class="recharge-btn">🔄 Nạp thêm vào tài khoản</button>

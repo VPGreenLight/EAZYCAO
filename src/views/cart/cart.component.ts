@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart.model';
+import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CurrencySuffixPipe],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
@@ -20,14 +21,12 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.loadCartItems();
-    console.log('Loaded cart items từ ngOnInit:', this.cartItems);
   }
 
   // Load cart items from backend
   loadCartItems() {
     this.cartService.getCart().subscribe(
       (response) => {
-        
         this.cartItems = response.items; // Gán mảng items từ API vào cartItems
         this.totalPrice = response.totalAmount; // Cập nhật tổng tiền từ API
         console.log('Loaded cart items từ loadCartItems:', this.cartItems);

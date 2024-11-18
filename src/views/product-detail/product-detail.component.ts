@@ -5,14 +5,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../interfaces/product.model';
 import { CartService } from '../../services/cart.service';
+import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule 
-  ],
+    FormsModule,
+    CurrencySuffixPipe
+],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })

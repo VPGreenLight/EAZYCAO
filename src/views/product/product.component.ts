@@ -4,14 +4,16 @@ import { ProductService } from '../../services/product.service';
 import { RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product.model';
 import { PagedResponse } from '../../interfaces/page.model';
+import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [
-    CommonModule, 
-    RouterModule
-  ],
+    CommonModule,
+    RouterModule,
+    CurrencySuffixPipe
+],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
@@ -41,7 +43,18 @@ export class ProductComponent implements OnInit {
     );
   }  
 
-  // Navigate to previous page
+  // Trả về danh sách số trang
+  getPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
+  // Chuyển sang trang khác
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    console.log(`Moved to page ${page}`);
+  }
+
+  // Chuyển trang trước
   onPreviousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -49,7 +62,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  // Navigate to next page
+  // Chuyển trang sau
   onNextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;

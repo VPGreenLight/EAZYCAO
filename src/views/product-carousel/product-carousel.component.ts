@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CurrencySuffixPipe } from "../../app/pipes/currency-suffix.pipe";
 
 @Component({
   selector: 'app-product-carousel',
   standalone: true,
   imports: [
     CommonModule,
-  ],
+    CurrencySuffixPipe
+],
   templateUrl: './product-carousel.component.html',
   styleUrls: ['./product-carousel.component.scss']
 })

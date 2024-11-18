@@ -1,15 +1,19 @@
 <div class="navbar-container">
-  <!-- Link to Cart Page -->
+  <!-- Nút Giỏ hàng -->
   <div class="cart-status">
     <a routerLink="/cart">
-      <span>0 Sản phẩm trong giỏ hàng</span>
+      <i class="fas fa-shopping-cart"></i>
+      Giỏ hàng <span class="cart-count">{{ cartItemCount }}</span>
     </a>
   </div>
 
-  <!-- Category Sections -->
+  <!-- Danh mục sản phẩm -->
   <div class="category">
-    <h3>Thẻ Cào</h3>
-    <ul>
+    <h3 (click)="toggleCategory('theCao')">
+      <i class="fas fa-credit-card"></i>Thẻ Cào
+      <i [class]="theCaoExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+    </h3>
+    <ul *ngIf="theCaoExpanded">
       <li><a routerLink="/products">Tất Cả</a></li>
       <li><a href="#">Viettel</a></li>
       <li><a href="#">Mobifone</a></li>
@@ -17,8 +21,12 @@
     </ul>
   </div>
   <div class="category">
-    <h3>Giải Trí</h3>
-    <ul>
+    <h3 (click)="toggleCategory('giaiTri')">
+      <i class="fas fa-tv"></i>Giải Trí
+      <i [class]="giaiTriExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+    </h3>
+    <ul *ngIf="giaiTriExpanded">
+      <li><a routerLink="/products">Tất Cả</a></li>
       <li><a href="#">Netflix</a></li>
     </ul>
   </div>

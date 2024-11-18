@@ -5,10 +5,10 @@
       <div class="slide" *ngFor="let product of products">
         <div class="product-card">
           <img [src]="product.image" alt="{{ product.name }}" />
-          <span class="badge">NEW</span>
+          <span class="badge">MỚI</span>
           <h3>{{ product.name }}</h3>
-          <p>{{ product.price | currency: 'VND' }}</p>
-          <button class="view-btn">VIEW</button>
+          <p>{{ product.price | currencySuffix }}</p>
+          <button class="view-btn">XEM THÊM</button>
         </div>
       </div>
     </div>

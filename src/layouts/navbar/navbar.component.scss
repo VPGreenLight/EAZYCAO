@@ -1,31 +1,51 @@
 .navbar-container {
-  width: 200px; // Limit width to make it compact
+  width: 200px;
   padding: 15px;
   border: 1px solid #ddd;
   background-color: #f9f9f9;
-  height: 100vh; // Full height to match the viewport
-  position: fixed; // Fix the sidebar on the left
+  height: 100vh;
+  position: fixed;
   top: 0;
   left: 0;
-  overflow-y: auto; // Add scroll if content overflows                                              
+  overflow-y: auto;
 
   .cart-status {
-    padding: 10px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
     text-align: center;
-    margin-bottom: 15px;
-    font-weight: bold;
-  }
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    gap: 10px;
 
-  .cart-status a {
-    text-decoration: none;
-    color: inherit; /* Uses the current color of the element */
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      i {
+        font-size: 18px;
+      }
+
+      .cart-count {
+        background-color: #fff;
+        color: #007bff;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 3px 8px;
+        border-radius: 12px;
+        margin-left: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
-  
-  .cart-status a:hover {
-    text-decoration: underline;
-  }  
 
   .category {
     margin-top: 20px;
@@ -33,12 +53,23 @@
     h3 {
       font-size: 16px;
       margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
     }
 
     ul {
       list-style: none;
       padding-left: 10px;
-
+      overflow: hidden;
+      font-weight: bold;
+      font-size: 12px;
       li {
         margin: 5px 0;
 
@@ -54,3 +85,4 @@
     }
   }
 }
+

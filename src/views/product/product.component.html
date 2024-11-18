@@ -10,15 +10,35 @@
         </span>
       </h3>
       <p class="product-description">{{ product.description }}</p>
-      <div class="product-price">{{ product.price * 1000 | currency: 'VND' }}</div>
-      <button class="buy-button">Mua</button>
+      <div class="product-price">{{ product.price * 1000 | currencySuffix }}</div>
     </div>
   </div>
 
   <!-- Pagination Controls -->
   <div class="pagination-controls">
-    <button class="pagination-button" (click)="onPreviousPage()" [disabled]="currentPage === 1">Previous</button>
-    <span class="pagination-info">Page {{ currentPage }} of {{ totalPages }}</span>
-    <button class="pagination-button" (click)="onNextPage()" [disabled]="currentPage === totalPages">Next</button>
+    <button 
+      class="pagination-arrow" 
+      (click)="onPreviousPage()" 
+      [disabled]="currentPage === 1"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  
+    <button 
+      *ngFor="let page of getPagesArray()" 
+      class="pagination-number" 
+      [class.active]="page === currentPage" 
+      (click)="onPageChange(page)"
+    >
+      {{ page }}
+    </button>
+  
+    <button 
+      class="pagination-arrow" 
+      (click)="onNextPage()" 
+      [disabled]="currentPage === totalPages"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
   </div>
 </div>

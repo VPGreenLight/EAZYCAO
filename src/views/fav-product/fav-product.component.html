@@ -1,0 +1,36 @@
+<div class="fav-product-container">
+    <h1>Sản phẩm yêu thích</h1>
+    <p>Danh sách các sản phẩm mà bạn đã đánh dấu "yêu thích"</p>
+  
+    <!-- Trạng thái loading -->
+    <div *ngIf="loading" class="loading">Đang tải...</div>
+  
+    <!-- Hiển thị lỗi -->
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  
+    <!-- Danh sách sản phẩm yêu thích -->
+    <div *ngIf="!loading && favProducts.length > 0">
+      <div class="fav-product-item" *ngFor="let product of favProducts">
+        <img [src]="product.image || 'assets/default-placeholder.jpg'" [alt]="product.productName" class="product-image" />
+        <div class="product-details">
+          <h3>{{ product.productName }}</h3>
+          <p>{{ product.category }}</p>
+          <p class="price">{{ product.price * 1000 | currencySuffix  }}</p>
+        </div>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" (click)="addToCart(product.productID)">
+            <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+          </button>
+          <button class="remove-favorite-btn" (click)="removeFromFavorite(product.productID)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Khi không có sản phẩm yêu thích -->
+    <div *ngIf="!loading && favProducts.length === 0" class="no-favorites">
+      <p>Bạn chưa có sản phẩm yêu thích nào.</p>
+    </div>
+  </div>
+  

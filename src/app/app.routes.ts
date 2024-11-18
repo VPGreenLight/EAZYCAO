@@ -13,6 +13,7 @@ import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.componen
 import { LoginComponent } from '../views/login/login.component';
 import { RegisterComponent } from '../views/register/register.component';
 import { AdminComponent } from './admin/admin.component';
+import { FavProductComponent } from '../views/fav-product/fav-product.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +22,8 @@ export const routes: Routes = [
     children: [
       { path: 'products', component: ProductComponent },
       { path: 'products/:id', component: ProductDetailComponent },
-      { path: 'user', component: UserComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: [1] }},
+      { path: 'profile', component: UserComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: [2, 1] }},
+      { path: 'favorites', component: FavProductComponent , canActivate: [AuthGuard, RoleGuard], data: { roles: [2, 1] }},
       { path: 'cart', component: CartComponent },
       { path: '', redirectTo: 'products', pathMatch: 'full' },
     ]
