@@ -23,8 +23,8 @@ export class RoleGuard implements CanActivate {
 
     return this.userService.getUserProfile().pipe(
       map((user: any) => {
-        const userRole = user.role;
-
+        const userRole = user.roleId;
+        console.log('Role cua user la:', userRole);
         if (requiredRoles.includes(userRole)) {
           return true;
         } else {

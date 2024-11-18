@@ -2,8 +2,6 @@ import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/h
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('token'); // Lấy token từ localStorage
-  console.log('Interceptor đang hoạt động!');
-  console.log('Token trong Interceptor:', token);
   if (token) {
     // Clone request và thêm header Authorization
     req = req.clone({

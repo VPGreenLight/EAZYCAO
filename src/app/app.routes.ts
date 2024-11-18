@@ -12,6 +12,7 @@ import { UserManagementComponent } from './admin/components/user-management/user
 import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.component';
 import { LoginComponent } from '../views/login/login.component';
 import { RegisterComponent } from '../views/register/register.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -20,15 +21,16 @@ export const routes: Routes = [
     children: [
       { path: 'products', component: ProductComponent },
       { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'user', component: UserComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: [1] }},
       { path: 'cart', component: CartComponent },
       { path: '', redirectTo: 'products', pathMatch: 'full' },
     ]
   },
   {
     path: 'admin',
-    //component: AdminComponent,
+    component: AdminComponent,
     canActivate: [AuthGuard, RoleGuard],
-    data: { roles: ['admin'] },
+    data: { roles: [1] },
     children: [
       { path: 'user-management', component: UserManagementComponent }
     ]
@@ -37,10 +39,10 @@ export const routes: Routes = [
     path: 'user',
     component: UserComponent,
     canActivate: [AuthGuard, RoleGuard],
-    data: { roles: ['user', 'admin'] },
+    data: { roles: [2, 1] },
     children: [
       { path: 'support', component: SettingComponent },
-      { path: 'user', component: UserComponent }
+      //{ path: 'user', component: UserComponent }
       // { path: 'orders', component: OrdersComponent },
       // { path: 'fav', component: FavProductComponent },
     ]
