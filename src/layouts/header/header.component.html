@@ -22,14 +22,14 @@
         <span>{{ userName }}</span>
         <i class="fas fa-caret-down"></i>
         <ul *ngIf="isDropdownVisible" class="dropdown-menu">
-          <li><a [routerLink]="'/money'">
+          <li><a [routerLink]="'/recharge'">
             <p><span>Số dư tài khoản</span></p>
             <p><strong class="account-balance">{{ userMoney * 1000 | currency: 'VND' }}</strong>
               <i class="fas fa-plus-square"  style="color: rgb(17, 193, 37); margin-left: 10px; font-size: 20px;"></i></p>
             </a>
           </li>
           <li><a [routerLink]="'/profile'">Quản lý tài khoản</a></li>
-          <li><a [routerLink]="'/orders'">Lịch sử đơn hàng</a></li>
+          <li><a [routerLink]="'/user-orders'">Lịch sử đơn hàng</a></li>
           <li><a [routerLink]="'/favorites'">Sản phẩm yêu thích</a></li>
           <li><a href="#" (click)="onLogout()">Đăng xuất</a></li>
         </ul>

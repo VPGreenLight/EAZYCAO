@@ -1,0 +1,32 @@
+<div class="recharge-container">
+    <h2>Nạp tiền vào tài khoản</h2>
+    <form (ngSubmit)="handleRecharge()" #rechargeForm="ngForm" class="recharge-form">
+      <div class="form-group">
+        <label for="amount">Số tiền (VND)</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          [(ngModel)]="amount"
+          class="form-control"
+          placeholder="Nhập số tiền cần nạp"
+          required
+          min="10000"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Mô tả</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="description"
+          class="form-control"
+          placeholder="Mô tả (tùy chọn)"
+        ></textarea>
+      </div>
+      <button type="submit" [disabled]="!rechargeForm.form.valid" class="btn btn-primary">
+        Nạp tiền
+      </button>
+    </form>
+  </div>
+  

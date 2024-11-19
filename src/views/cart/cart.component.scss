@@ -18,11 +18,21 @@
         color: #aaa;
       }
     }
-  
+    
+          
+    .empty-cart-image {
+      max-width: 200px; 
+      height: auto; 
+      display: block;
+      margin: 20px auto;
+      border-radius: 200px;
+      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1);
+    }
+
     .cart-content {
       display: flex;
       gap: 20px;
-  
+
       .cart-items {
         flex: 3;
         .cart-item {

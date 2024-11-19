@@ -6,19 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = "https://localhost:44333";
+  private baseUrl = "https://localhost:44333/auth";
   
   constructor(private http: HttpClient) {}
 
   login(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/login`, data, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}/login`, data, { withCredentials: true });
   } 
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/auth/register`, data, { withCredentials: true });
+    return this.http.post<any>(`${this.baseUrl}/register`, data, { withCredentials: true });
   }
 
   getCaptcha(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/auth/captcha/refresh`, { withCredentials: true });
+    return this.http.get(`${this.baseUrl}/captcha/refresh`, { withCredentials: true });
   }
 }

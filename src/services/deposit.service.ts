@@ -14,7 +14,7 @@ import { Observable } from "rxjs";
     recharge(amount: number, description: string ): Observable<any> {
         const payload = {
         amount: amount * 1000, // VNPay yêu cầu đơn vị là VND
-        description: 'Nạp tiền vào tài khoản',
+        description: description,
         };
         return this.http.post(`${this.baseUrl}/recharge`, payload);
     }
