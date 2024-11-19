@@ -78,7 +78,17 @@
             <span>{{ requiredAmount  * 1000 | currencySuffix }}</span>
           </div>
         </div>
-        <button class="recharge-btn">🔄 Nạp thêm vào tài khoản</button>
+
+        <!-- Nút nạp thêm tiền -->
+        <button 
+          class="recharge-btn"
+          (click)="handleRecharge()" 
+          [disabled]="balance > requiredAmount" 
+        >
+          🔄 Nạp thêm vào tài khoản
+        </button>
+
+        <!-- Nút Thanh toán số dư -->
         <button 
           class="pay-balance-btn" 
           (click)="payWithBalance()" 
@@ -86,6 +96,8 @@
         >
         💵 Thanh toán bằng số dư
         </button>
+
+        <!-- Nút Thanh toán VNPay-->
         <button class="pay-banking-btn">💳 VNPay</button>
       </div>
     </div>

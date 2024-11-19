@@ -46,6 +46,7 @@ export class CartService {
     return this.http.post(`${this.baseUrl}/apply-voucher`, { code }); // Gửi mã trong body
   }
 
+  // Checkout
   checkoutWithBalance(): Observable<any> {
     return this.http.post(`${this.baseUrl}/checkout`, null);
   }

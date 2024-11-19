@@ -6,6 +6,7 @@ import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { DepositService } from '../../services/deposit.service';
 
 @Component({
   selector: 'app-cart',
@@ -27,10 +28,12 @@ export class CartComponent implements OnInit {
   requiredAmount: number = 0;
   isCouponExpanded: boolean = false;
   couponCode: string = '';
+  rechargeAmount: number = 0;
 
   constructor(
     private cartService: CartService, 
     private userService: UserService,
+    private depositService: DepositService,
     private router: Router
   ) {}
 
@@ -153,6 +156,31 @@ export class CartComponent implements OnInit {
       error: (err) => {
         console.error('Error during checkout:', err);
         alert('Thanh toán thất bại.');
+      },
+    });
+  }
+
+  // Hàm xử lý nạp tiền
+  handleRecharge(): void {
+    if (this.requiredAmount < 10) {
+      alert('Số tiền cần nạp phải lớn hơn hoặc bằng 10.000 VND.');
+      return;
+    }
+  
+    // Gọi API nạp tiền
+    this.depositService.recharge(this.requiredAmount, 'Nạp tiền vào tài khoản').subscribe({
+      next: (response: any) => {
+        console.log('Response from recharge:', response); // Log kiểm tra
+        if (response?.paymentUrl) {
+          // Điều hướng đến URL thanh toán VNPay
+          window.location.href = response.paymentUrl;
+        } else {
+          alert('Không thể tạo liên kết thanh toán. Vui lòng thử lại.');
+        }
+      },
+      error: (err) => {
+        console.error('Lỗi khi nạp tiền:', err);
+        alert('Đã xảy ra lỗi khi tạo liên kết thanh toán. Vui lòng thử lại.');
       },
     });
   }

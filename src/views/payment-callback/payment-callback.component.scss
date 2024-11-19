@@ -1,0 +1,32 @@
+.processing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Màn hình mờ */
+    z-index: 9999;
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3; /* Nhẹ nhàng */
+    border-top: 8px solid #3498db; /* Màu spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

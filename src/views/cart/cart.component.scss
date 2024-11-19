@@ -140,6 +140,10 @@
         .recharge-btn {
           background: #3498db;
           color: white;
+
+          &:hover {
+            background: #3684b9;
+          }
         }
   
         .pay-balance-btn {
@@ -159,6 +163,10 @@
         .pay-banking-btn {
           background: #3b5998;
           color: white;
+
+          &:hover {
+            background: #384c77;
+          }
         }
       }
     }

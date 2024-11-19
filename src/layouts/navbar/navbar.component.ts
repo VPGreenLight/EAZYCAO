@@ -41,7 +41,6 @@ export class NavbarComponent implements OnInit{
     this.userService.getUserProfile().subscribe(
       (user) => {
         this.laAdmin = user.roleId === 1;
-        console.log("Role của bạn là:", user.roleId);
       },
       (error) => {
         console.error('Lỗi khi kiểm tra role:', error);
