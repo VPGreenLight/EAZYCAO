@@ -6,17 +6,17 @@
     <span class="inactive-step">Thanh toán</span>
   </div>
 
-  <!-- Check if Cart is Empty -->
+  <!-- Giỏ hàng khi trống -->
   <div *ngIf="cartItems.length === 0; else cartContent">
-    <!-- Empty Cart Message -->
+    <!-- Gửi tin -->
     <div class="empty-cart">
       <h2>Giỏ hàng trống!</h2>
       <p>Thêm sản phẩm vào giỏ và quay lại trang này để thanh toán nha bạn &lt;3</p>
-      <img src="../../assets/emptyCart.png" class="empty-cart-image" />
+      <img src="https://i.pinimg.com/originals/6f/a3/49/6fa34922a2c7139cf07ce4d2928a0386.jpg" class="empty-cart-image" />
     </div>
   </div>
 
-  <!-- Main Cart Content (Displayed only if there are items in the cart) -->
+  <!-- Giỏ hàng khi có đồ -->
   <ng-template #cartContent>
     <div class="cart-content">
       <!-- Left: Cart Items -->
@@ -34,8 +34,7 @@
             <button (click)="increaseQuantity(item)">+</button>
           </div>
           <div class="product-price">
-            <span class="current-price">{{ item.price | currencySuffix }}</span>
-            <span class="original-price" *ngIf="item.price">{{ item.price | currency: 'VND' }}</span>
+            <span class="current-price">{{ item.price * 1000 | currencySuffix }}</span>
           </div>
           <button class="remove-item" (click)="removeItem(item)">🗑️</button>
         </div>        
@@ -43,30 +42,51 @@
 
       <!-- Right: Payment Summary -->
       <div class="payment-summary">
-        <div class="summary-row">
-          <label>Bạn có mã ưu đãi?</label>
-          <span class="icon">%</span>
+          <!-- Mã ưu đãi -->
+          <div class="summary-row">
+            <label (click)="toggleCoupon()">Bạn có mã ưu đãi?</label>
+            <span class="icon" (click)="toggleCoupon()">%</span>
+          </div>
+
+        <!-- Mở rộng nhập mã ưu đãi -->
+        <div class="coupon-section" *ngIf="isCouponExpanded">
+          <input
+            type="text"
+            class="coupon-input"
+            [(ngModel)]="couponCode"
+            placeholder="Mã giảm giá"
+          />
+          <button class="apply-btn" (click)="applyVoucherCode()">Áp dụng</button>
         </div>
+
+        <!-- Tổng giá trị -->
         <div class="summary-total">
           <div>
             <span>Tổng giá trị sản phẩm</span>
-            <span>{{ totalPrice | currencySuffix }}</span>
+            <span>{{ totalPrice * 1000 | currencySuffix }}</span>
           </div>
           <div>
             <span>Tổng giá trị phải thanh toán</span>
-            <span>{{ totalPrice | currencySuffix }}</span>
+            <span>{{ totalPrice * 1000 | currencySuffix }}</span>
           </div>
           <div>
             <span>Số dư hiện tại</span>
-            <span>{{ balance | currencySuffix }}</span>
+            <span>{{ balance * 1000 | currencySuffix }}</span>
           </div>
           <div>
             <span>Số tiền cần nạp thêm</span>
-            <span>{{ totalPayable - balance | currencySuffix }}</span>
+            <span>{{ requiredAmount  * 1000 | currencySuffix }}</span>
           </div>
         </div>
         <button class="recharge-btn">🔄 Nạp thêm vào tài khoản</button>
-        <button class="pay-banking-btn">VNPay</button>
+        <button 
+          class="pay-balance-btn" 
+          (click)="payWithBalance()" 
+          [disabled]="balance < totalPrice"
+        >
+        💵 Thanh toán bằng số dư
+        </button>
+        <button class="pay-banking-btn">💳 VNPay</button>
       </div>
     </div>
   </ng-template>

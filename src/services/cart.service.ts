@@ -40,4 +40,13 @@ export class CartService {
   decreaseQuantity(productId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/decrease-quantity/${productId}`, { productId });
   }
+
+  // Apply Voucher
+  applyVoucher(code: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/apply-voucher`, { code }); // Gửi mã trong body
+  }
+
+  checkoutWithBalance(): Observable<any> {
+    return this.http.post(`${this.baseUrl}/checkout`, null);
+  }
 }

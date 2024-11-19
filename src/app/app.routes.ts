@@ -12,6 +12,7 @@ import { LoginComponent } from '../views/login/login.component';
 import { RegisterComponent } from '../views/register/register.component';
 import { FavProductComponent } from '../views/fav-product/fav-product.component';
 import { adminRoutes } from '../admin/admin.routes';
+import { PaymentSuccessfulComponent } from '../views/payment-successful/payment-successful.component';
 
 export const routes: Routes = [
   ...adminRoutes,
@@ -24,6 +25,7 @@ export const routes: Routes = [
       { path: 'profile', component: UserComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: [2, 1] }},
       { path: 'favorites', component: FavProductComponent , canActivate: [AuthGuard, RoleGuard], data: { roles: [2, 1] }},
       { path: 'cart', component: CartComponent },
+      { path: 'payment-successful', component: PaymentSuccessfulComponent, canActivate: [AuthGuard]},
       { path: '', redirectTo: 'products', pathMatch: 'full' },
     ]
   },
