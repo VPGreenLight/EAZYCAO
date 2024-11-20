@@ -34,4 +34,20 @@ export class UserService {
       }
     });
   }
+
+  getDepositHistory(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/deposit-history`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
+
+  getOrderHistory(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/order-history`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
 }

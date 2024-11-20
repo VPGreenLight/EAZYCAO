@@ -64,38 +64,58 @@
     }
   }
 
-  // .pagination-controls {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   margin-top: 20px;
-  //   gap: 10px; // Space between buttons and text
+  .filter-bar-horizontal {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các mục */
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   
-  //   .pagination-button {
-  //     padding: 8px 12px;
-  //     font-size: 14px;
-  //     background-color: #007bff;
-  //     color: white;
-  //     border: none;
-  //     border-radius: 4px;
-  //     cursor: pointer;
-  //     transition: background-color 0.3s ease;
+    .filter-item {
+      display: flex;
+      flex-direction: column;
   
-  //     &:hover {
-  //       background-color: #0056b3;
-  //     }
+      label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
   
-  //     &:disabled {
-  //       background-color: #ccc;
-  //       cursor: not-allowed;
-  //     }
-  //   }
+      input, select {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-width: 120px; /* Đặt kích thước tối thiểu */
+      }
+    }
   
-  //   .pagination-info {
-  //     font-size: 14px;
-  //     color: #333;
-  //   }
-  // }
+    .filter-button {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+  
+      i {
+        font-size: 16px;
+      }
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
   .pagination-controls {
     display: flex;
     justify-content: center;

@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { Product } from '../../interfaces/product.model';
 import { PagedResponse } from '../../interfaces/page.model';
 import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
+import { SearchService } from '../../services/search.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -12,6 +14,7 @@ import { CurrencySuffixPipe } from "../../services/pipes/currency-suffix.pipe";
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     CurrencySuffixPipe
 ],
   templateUrl: './product.component.html',
@@ -23,15 +26,28 @@ export class ProductComponent implements OnInit {
   itemsPerPage = 10;
   currentPage = 1;
   totalPages = 0;
+  keyword = '';
+  minPrice: number | null = null; 
+  maxPrice: number | null = null; 
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit() {
+    this.searchService.keyword$.subscribe((newKeyword) => {
+      this.keyword = newKeyword;
+      this.currentPage = 1; 
+      this.loadProducts();
+    });
+
     this.loadProducts();
   }
 
   loadProducts(): void {
-    this.productService.getProducts(this.currentPage, this.itemsPerPage).subscribe(
+    this.productService.getProducts(
+      this.currentPage, this.itemsPerPage, this.keyword, this.minPrice ?? undefined, this.maxPrice ?? undefined ).subscribe(
       (response: PagedResponse<Product>) => {
         this.products = response.data;
         this.totalItems = response.totalCount;
@@ -42,6 +58,12 @@ export class ProductComponent implements OnInit {
       }
     );
   }  
+  
+  // Tìm kiếm
+  onSearch(): void {
+    this.currentPage = 1; // Reset về trang đầu tiên
+    this.loadProducts();
+  }
 
   // Trả về danh sách số trang
   getPagesArray(): number[] {

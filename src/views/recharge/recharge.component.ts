@@ -23,7 +23,7 @@ export class RechargeComponent {
       return;
     }
 
-    this.depositService.recharge(this.amount, this.description).subscribe({
+    this.depositService.recharge(this.amount / 1000, this.description).subscribe({
       next: (response: any) => {
         if (response?.paymentUrl) {
           // Điều hướng đến VNPay

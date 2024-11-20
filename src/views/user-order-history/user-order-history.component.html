@@ -1,0 +1,77 @@
+<div class="user-history-container">
+    <!-- Nút chuyển đổi -->
+    <div class="history-buttons">
+      <button 
+        class="history-button" 
+        [class.active]="currentView === 'order'" 
+        (click)="switchView('order')"
+      >
+        Lịch sử giao dịch
+      </button>
+      <button 
+        class="history-button" 
+        [class.active]="currentView === 'deposit'" 
+        (click)="switchView('deposit')"
+      >
+        Lịch sử nạp tiền
+      </button>
+    </div>
+  
+    <!-- Bảng lịch sử giao dịch -->
+    <div *ngIf="currentView === 'order'">
+      <h3>Lịch sử giao dịch</h3>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Sản phẩm</th>
+            <th>Ngày</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of transactionHistory; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ order.productName }}</td>
+            <td>{{ order.date | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.totalPrice * 1000 | currencySuffix }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Bảng lịch sử nạp tiền -->
+    <div *ngIf="currentView === 'deposit'">
+      <h3>Lịch sử nạp tiền</h3>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ngày</th>
+            <th>Mô tả</th>
+            <th>Số tiền</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let deposit of depositHistory; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ deposit.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ deposit.description }}</td>
+            <td>{{ deposit.money * 1000 | currencySuffix }}</td>
+            <td>
+              <span 
+                [class.success]="deposit.isSuccess" 
+                [class.failed]="!deposit.isSuccess"
+              >
+                {{ deposit.isSuccess ? 'Thành công' : 'Thất bại' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

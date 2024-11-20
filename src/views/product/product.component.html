@@ -1,6 +1,30 @@
 <div class="product-page">
   <h2>Sản phẩm</h2>
 
+    <!-- Thanh lọc sản phẩm -->
+    <div class="filter-bar-horizontal">
+      <div class="filter-item">
+        <input 
+          id="minPrice" 
+          type="number" 
+          placeholder="Mức giá từ" 
+          [(ngModel)]="minPrice" 
+        />
+      </div>
+      <div class="filter-item">
+        <input 
+          id="maxPrice" 
+          type="number" 
+          placeholder="Mức giá đến" 
+          [(ngModel)]="maxPrice" 
+        />
+      </div>
+      <button type="button" class="filter-button" (click)="onSearch()">
+        <i class="fas fa-filter"></i> Lọc
+      </button>
+    </div>
+  
+  <!-- Sản phẩm -->
   <div class="product-grid">
     <div *ngFor="let product of products" class="product-card">
       <img [src]="product.image || 'assets/default-placeholder.jpg'" [alt]="product.name" class="product-image" />
@@ -14,7 +38,7 @@
     </div>
   </div>
 
-  <!-- Pagination Controls -->
+  <!-- Phân trang -->
   <div class="pagination-controls">
     <button 
       class="pagination-arrow" 

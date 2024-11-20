@@ -15,6 +15,7 @@ import { adminRoutes } from '../admin/admin.routes';
 import { PaymentSuccessfulComponent } from '../views/payment-successful/payment-successful.component';
 import { PaymentCallbackComponent } from '../views/payment-callback/payment-callback.component';
 import { RechargeComponent } from '../views/recharge/recharge.component';
+import { UserOrderHistoryComponent } from '../views/user-order-history/user-order-history.component';
 
 export const routes: Routes = [
   ...adminRoutes,
@@ -30,6 +31,7 @@ export const routes: Routes = [
       { path: 'recharge', component: RechargeComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: [2, 1] }},
       { path: 'payment-successful', component: PaymentSuccessfulComponent, canActivate: [AuthGuard]},
       { path: 'payment-callback', component: PaymentCallbackComponent, canActivate: [AuthGuard] },
+      { path: 'user-order-history', component: UserOrderHistoryComponent, canActivate: [AuthGuard] },
       { path: '', redirectTo: 'products', pathMatch: 'full' },
     ]
   },

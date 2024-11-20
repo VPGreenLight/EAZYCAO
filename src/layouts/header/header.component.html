@@ -3,9 +3,15 @@
     <img src="#" alt="EazyCao Logo" />
   </div>
 
+  <!-- Tìm kiếm -->
   <div class="search-bar">
-    <input type="text" placeholder="Tìm kiếm" />
-    <button type="button">
+    <input
+      type="text"
+      placeholder="Tìm kiếm"
+      [(ngModel)]="keyword"
+      (keyup.enter)="onSearch()"
+    />
+    <button type="button" (click)="onSearch()"> <!-- Nhấn nút tìm kiếm -->
       <i class="fas fa-search"></i> <!-- Biểu tượng kính lúp -->
     </button>
   </div>
@@ -29,7 +35,7 @@
             </a>
           </li>
           <li><a [routerLink]="'/profile'">Quản lý tài khoản</a></li>
-          <li><a [routerLink]="'/user-orders'">Lịch sử đơn hàng</a></li>
+          <li><a [routerLink]="'/user-order-history'">Lịch sử đơn hàng</a></li>
           <li><a [routerLink]="'/favorites'">Sản phẩm yêu thích</a></li>
           <li><a href="#" (click)="onLogout()">Đăng xuất</a></li>
         </ul>

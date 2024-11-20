@@ -14,10 +14,10 @@
       <i [class]="theCaoExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
     </h3>
     <ul *ngIf="theCaoExpanded">
-      <li><a routerLink="/products">Tất Cả</a></li>
-      <li><a href="#">Viettel</a></li>
-      <li><a href="#">Mobifone</a></li>
-      <li><a href="#">Vinaphone</a></li>
+      <li><a (click)="searchByCategory('')">Tất Cả</a></li>
+      <li><a (click)="searchByCategory('Viettel')">Viettel</a></li>
+      <li><a (click)="searchByCategory('Mobifone')">Mobifone</a></li>
+      <li><a (click)="searchByCategory('Vinaphone')">Vinaphone</a></li>
     </ul>
   </div>
   <div class="category">
@@ -26,8 +26,8 @@
       <i [class]="giaiTriExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
     </h3>
     <ul *ngIf="giaiTriExpanded">
-      <li><a routerLink="/products">Tất Cả</a></li>
-      <li><a href="#">Netflix</a></li>
+      <li><a (click)="searchByCategory('')">Tất Cả</a></li>
+      <li><a (click)="searchByCategory('Netflix')">Netflix</a></li>
     </ul>
   </div>
 

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,8 @@ export class NavbarComponent implements OnInit{
   laAdmin: boolean = false;
 
   constructor(private cartService: CartService,
-    private userService: UserService
+    private userService: UserService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,11 @@ export class NavbarComponent implements OnInit{
     } else if (category === 'giaiTri') {
       this.giaiTriExpanded = !this.giaiTriExpanded;
     }
+  }
+
+  searchByCategory(keyword: string): void {
+    // Đẩy keyword vào service tìm kiếm
+    this.searchService.updateKeyword(keyword);
   }
 
   checkUserRole(): void {

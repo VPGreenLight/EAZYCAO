@@ -4,11 +4,17 @@ import { ApiService } from '../../services/api/api.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { SearchService } from '../../services/search.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [
+    RouterModule, 
+    CommonModule, 
+    FormsModule
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -19,14 +25,24 @@ export class HeaderComponent implements OnInit {
   userMoney: number = 0;
   userAvatar: string = '';
   defaultAvatar: string = '../../assets/userAva.png'; // Default avatar
+  keyword = '';
 
-  constructor(private userService: UserService, private authService: AuthService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private authService: AuthService, 
+    private router: Router,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
         this.loadUserData();
     }
+  }
+
+  onSearch(): void {
+    this.searchService.updateKeyword(this.keyword); // Phát sự kiện khi tìm kiếm
   }
 
   toggleDropdown(): void {

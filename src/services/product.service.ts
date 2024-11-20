@@ -12,11 +12,22 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(pageIndex: number, pageSize: number): Observable<PagedResponse<Product>> {
-    const params = new HttpParams()
+  getProducts(pageIndex: number, pageSize: number, keyword?: string, minPrice?: number, maxPrice?: number
+  ): Observable<PagedResponse<Product>> {
+    let params = new HttpParams()
       .set('pageIndex', pageIndex.toString())
       .set('pageSize', pageSize.toString());
-
+  
+    if (keyword) {
+      params = params.set('keyword', keyword);
+    }
+    if (minPrice !== null && minPrice !== undefined) {
+      params = params.set('minPrice', minPrice.toString());
+    }
+    if (maxPrice !== null && maxPrice !== undefined) {
+      params = params.set('maxPrice', maxPrice.toString());
+    }
+  
     return this.http.get<PagedResponse<Product>>(this.apiUrl, { params });
   }
 
