@@ -1,0 +1,35 @@
+<div *ngIf="product?.details && product.details.length > 0; else noData" class="product-table-container">
+
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Số seri</th>
+          <th>Mã thẻ</th>
+          <th>Trạng Thái</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detail of product?.details; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ detail.serial }}</td>
+          <td>{{ detail.code }}</td>
+          <td>
+            <span class="status" [ngClass]="{ 'status-active': !detail.isDelete, 'status-inactive': detail.isDelete }">
+              {{ detail.isDelete ? 'Đã xóa' : 'Hoạt động' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-edit" (click)="editDetail(detail.id)">Sửa</button>
+            <button class="btn btn-delete" (click)="deleteDetail(detail.id)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #noData>
+    <p>Không có chi tiết sản phẩm nào để hiển thị.</p>
+  </ng-template>
+  

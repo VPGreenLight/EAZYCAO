@@ -1,82 +1,159 @@
 <div class="user-management">
-    <div class="header">
-      <h2>Quản lí người dùng</h2>
-      <button class="btn btn-primary" (click)="onAddUser()">Thêm mới</button>
-    </div>
+  <div class="header">
+    <h2>Quản lí người dùng</h2>
+    <button class="btn btn-primary" (click)="onAddUser()">Thêm mới</button>
+  </div>
+
+  <!-- Bảng danh sách người dùng -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tên truy cập</th>
+        <th>Họ tên</th>
+        <th>Số điện thoại</th>
+        <th>Email</th>
+        <th>Địa chỉ</th>
+        <th>Trạng thái</th>
+        <th>Số dư</th>
+        <th>Hành động</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.userName }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.isActive ? 'Hoạt động' : 'Ngừng hoạt động' }}</td>
+        <td>{{ user.money | currency: 'VND' }}</td>
+        
+        <td>
+          <button class="btn btn-warning" (click)="onEditUser(user)">Sửa</button>
+          <button class="btn btn-danger" (click)="deleteUser(user.id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-controls">
+  <button 
+    class="pagination-arrow" 
+    (click)="onPreviousPage()" 
+    [disabled]="currentPage === 1"
+  >
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <button 
+    *ngFor="let page of getPagesArray()" 
+    class="pagination-number" 
+    [class.active]="page === currentPage" 
+    (click)="onPageChange(page)"
+  >
+    {{ page }}
+  </button>
+
+  <button 
+    class="pagination-arrow" 
+    (click)="onNextPage()" 
+    [disabled]="currentPage === totalPages"
+  >
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
+  <!-- Form sửa người dùng -->
+  <div *ngIf="isEditMode" class="edit-user-form">
+    <h3>Sửa người dùng</h3>
+    <form [formGroup]="editForm" (ngSubmit)="saveUser()">
+      <div class="form-group">
+        <label>Họ tên</label>
+        <input formControlName="name" class="form-control" type="text" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input formControlName="email" class="form-control" type="email" />
+      </div>
+      <div class="form-group">
+        <label>Số điện thoại</label>
+        <input formControlName="phone" class="form-control" type="text" />
+      </div>
+      <div class="form-group">
+        <label>Địa chỉ</label>
+        <input formControlName="address" class="form-control" type="text" />
+      </div>
+      <div class="form-group">
+        <label>Trạng thái</label>
+        <select formControlName="isActive" class="form-control">
+          <option [value]="true">Hoạt động</option>
+          <option [value]="false">Ngừng hoạt động</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Hủy</button>
+      </div>
+    </form>
+  </div>
+  <!-- Form thêm người dùng -->
+  <div *ngIf="isAddMode" class="edit-user-form">
+    <h3>Thêm người dùng</h3>
+    <form [formGroup]="editForm" (ngSubmit)="saveUser()">
+      <div class="form-group">
+        <label>Họ tên</label>
+        <input formControlName="name" class="form-control" type="text" />
+      </div>
   
-    <div *ngIf="loading" class="loading">
-      <p>Đang tải dữ liệu...</p>
-    </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input formControlName="email" class="form-control" type="email" />
+      </div>
   
-    <div *ngIf="!loading && users.length === 0" class="empty">
-      <p>Không có người dùng nào.</p>
-    </div>
+      <div class="form-group">
+        <label>Tên người dùng</label>
+        <input formControlName="username" class="form-control" type="text" />
+      </div>
   
-    <!-- Bảng danh sách người dùng -->
-    <table *ngIf="!loading && users.length > 0" class="table table-striped">
-      <thead>
-        <tr>
-          <th>STT</th>
-          <th>Tên truy cập</th>
-          <th>Họ tên</th>
-          <th>Số điện thoại</th>
-          <th>Email</th>
-          <th>Địa chỉ</th>
-          <th>Trạng thái</th>
-          <th>Số dư</th>
-          <th>Hành động</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ user.userName }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.phone }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.address }}</td>
-          <td>{{ user.isActive ? 'Hoạt động' : 'Ngừng hoạt động' }}</td>
-          <td>{{ user.money | currency: 'VND' }}</td>
-          <td>
-            <button class="btn btn-warning" (click)="onEditUser(user)">Sửa</button>
-            <button class="btn btn-danger" (click)="deleteUser(user.id)">Xóa</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="form-group">
+        <label>Mật khẩu</label>
+        <input formControlName="password" class="form-control" type="password" />
+      </div>
   
-    <!-- Form sửa người dùng -->
-    <div *ngIf="isEditMode" class="edit-user-form">
-      <h3>Sửa người dùng</h3>
-      <form [formGroup]="editForm" (ngSubmit)="saveUser()">
-        <div class="form-group">
-          <label>Họ tên</label>
-          <input formControlName="name" class="form-control" type="text" />
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input formControlName="email" class="form-control" type="email" />
-        </div>
-        <div class="form-group">
-          <label>Số điện thoại</label>
-          <input formControlName="phone" class="form-control" type="text" />
-        </div>
-        <div class="form-group">
-          <label>Địa chỉ</label>
-          <input formControlName="address" class="form-control" type="text" />
-        </div>
-        <div class="form-group">
-          <label>Trạng thái</label>
-          <select formControlName="isActive" class="form-control">
-            <option [value]="true">Hoạt động</option>
-            <option [value]="false">Ngừng hoạt động</option>
-          </select>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-success">Lưu</button>
-          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Hủy</button>
-        </div>
-      </form>
-    </div>
+      <div class="form-group">
+        <label>Số điện thoại</label>
+        <input formControlName="phone" class="form-control" type="text" />
+      </div>
+  
+      <div class="form-group">
+        <label>Địa chỉ</label>
+        <input formControlName="address" class="form-control" type="text" />
+      </div>
+  
+      <div class="form-group">
+        <label>Trạng thái</label>
+        <select formControlName="isActive" class="form-control">
+          <option [value]="true">Hoạt động</option>
+          <option [value]="false">Ngừng hoạt động</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label>Chức vụ</label>
+        <select formControlName="roleId" class="form-control">
+          <option [value]="1">Admin</option>
+          <option [value]="2">User</option>
+        </select>
+      </div>
+  
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Lưu</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Hủy</button>
+      </div>
+    </form>
   </div>
   
+  
+  
+</div>

@@ -1,1 +1,164 @@
-<p>product-management works!</p>
+<div class="product-management">
+    <h2>Quản lí sản phẩm</h2>
+    <div>
+        <button (click)="onAddProduct()">Thêm sản phẩm</button>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Hình ảnh</th>
+          <th>Tên sản phẩm</th>
+          <th>Thể loại</th>
+          <th>Thương hiệu</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+          <th>Mô tả</th>
+          <th>Người tạo</th>
+          <th>Ngày tạo</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td><img [src]="product.image" alt="Hình ảnh" width="50" /></td>
+          <td>
+            <a [routerLink]="['/admin/productdetail-manager', product.id]">{{ product.name }}</a>
+          </td>
+          
+          <td>{{ product.category }}</td>
+          <td>{{ product.brand }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.price | currencySuffix }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.createdBy }}</td>
+          <td>{{ product.createdAt| date: 'short' }}</td>
+          <td>
+            <button (click)="onEditProduct(product)">Sửa</button>
+            <button (click)="deleteProduct(product.id)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="isAddMode">
+        <h3>Thêm sản phẩm mới</h3>
+        <form [formGroup]="editForm" (ngSubmit)="saveProduct()">
+          <label>
+            Tên sản phẩm:
+            <input formControlName="name" />
+          </label>
+          <label>
+            URL Hình ảnh:
+            <input formControlName="image" />
+          </label>
+          <label>
+            Ngày hết hạn:
+            <input type="date" formControlName="expiry" />
+          </label>
+          <label>
+            Mô tả:
+            <textarea formControlName="description"></textarea>
+          </label>
+          <label>
+            Giá:
+            <input type="number" formControlName="price" />
+          </label>
+          <label>
+            Số lượng:
+            <input type="number" formControlName="quantity" />
+          </label>
+          <label>
+            ID Danh mục:
+            <select formControlName="categoryId">
+                <option *ngFor="let category of categories" [value]="category.id" [selected]="editForm.get('categoryId')?.value === category.id">{{ category.name }}</option>
+            </select>
+          </label>
+          <label>
+            ID Thương hiệu:
+            <select formControlName="brandId">
+                <option *ngFor="let brand of brands" [value]="brand.id" [selected]="editForm.get('brandId')?.value === brand.id">{{ brand.name }}</option>
+            </select>
+          </label>
+          <button type="submit">Thêm</button>
+          <button type="button" (click)="cancelAdd()">Hủy</button>
+        </form>
+    </div>
+    
+    <!-- Form chỉnh sửa/thêm -->
+    <div *ngIf="isEditMode">
+        <h3>Chỉnh sửa sản phẩm</h3>
+        <form [formGroup]="editForm" (ngSubmit)="saveProduct()">
+          <label>
+            Tên sản phẩm:
+            <input formControlName="name" />
+          </label>
+          <label>
+            URL Hình ảnh:
+            <input formControlName="image" />
+          </label>
+          <label>
+            Ngày hết hạn:
+            <input id="expiry" class="form-control" formControlName="expiry">
+          </label>
+          <label>
+            Mô tả:
+            <textarea formControlName="description"></textarea>
+          </label>
+          <label>
+            Giá:
+            <input type="number" formControlName="price" />
+          </label>
+          <label>
+            Số lượng:
+            <input type="number" formControlName="quantity" />
+          </label>
+          <label>
+            Danh mục:
+            <select formControlName="categoryId">
+              <option *ngFor="let category of categories" [value]="category.id" [selected]="editForm.get('categoryId')?.value === category.id">{{ category.name }}</option>
+            </select>
+          </label>
+          
+          <label>
+            Thương hiệu:
+            <select formControlName="brandId">
+              <option *ngFor="let brand of brands" [value]="brand.id" [selected]="editForm.get('brandId')?.value === brand.id">{{ brand.name }}</option>
+            </select>
+          </label>
+          
+          <button type="submit" [disabled]="editForm.invalid">Lưu</button>
+          <button type="button" (click)="cancelEdit()">Hủy</button>
+        </form>
+    </div>
+</div>
+
+<div class="pagination-controls">
+    <button 
+      class="pagination-arrow" 
+      (click)="onPreviousPage()" 
+      [disabled]="currentPage === 1"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <button 
+      *ngFor="let page of getPagesArray()" 
+      class="pagination-number" 
+      [class.active]="page === currentPage" 
+      (click)="onPageChange(page)"
+    >
+      {{ page }}
+    </button>
+
+    <button 
+      class="pagination-arrow" 
+      (click)="onNextPage()" 
+      [disabled]="currentPage === totalPages"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
+

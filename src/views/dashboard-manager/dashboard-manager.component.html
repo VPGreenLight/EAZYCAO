@@ -1,0 +1,54 @@
+<div class="dashboard-container">
+    <h2>Bảng Thống Kê</h2>
+    
+    <div class="statistics">
+      <div class="stat-item bg-blue">
+        <h3>{{ dashboardData?.quantitySold }}</h3>
+        <p>Số lượng đã bán</p>
+      </div>
+      <div class="stat-item bg-green">
+        <h3>{{ dashboardData?.feedbackCount }}</h3>
+        <p>Số lượng bình luận</p>
+      </div>
+      <div class="stat-item bg-yellow">
+        <h3>{{ dashboardData?.userCount }}</h3>
+        <p>Tài khoản đã đăng ký</p>
+      </div>
+      <div class="stat-item bg-red">
+        <h3>{{ dashboardData?.productCount }}</h3>
+        <p>Số lượng sản phẩm</p>
+      </div>
+    </div>
+  
+    <div class="content">
+      <!-- Sản phẩm bán chạy -->
+      <div class="best-sellers">
+        <h3>Sản Phẩm Bán Chạy</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Sản Phẩm</th>
+              <th>Số Lượng Đã Bán</th>
+              <th>Thêm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of dashboardData?.bestSellingProducts">
+              <td>{{ product.productName }}</td>
+              <td>{{ product.totalQuantitySold }}</td>
+              <td><button (click)="viewProduct(product)">🔍</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Doanh thu -->
+      <div class="revenue">
+        <h3>Doanh Thu</h3>
+        <p>{{ dashboardData?.totalRevenue }} VND</p>
+        <p>Tăng trưởng: {{ dashboardData?.percentGrowth }}%</p>
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+  </div>
+  

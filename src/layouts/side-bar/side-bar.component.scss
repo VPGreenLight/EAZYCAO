@@ -1,0 +1,79 @@
+.sidebar {
+    width: 260px; // Chiều rộng sidebar
+    height: 100vh; // Chiều cao toàn màn hình
+    background-color: #2c3e50; // Màu nền sidebar
+    color: #ecf0f1; // Màu chữ
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); // Hiệu ứng đổ bóng
+    overflow-y: auto; // Cuộn khi nội dung dài
+  
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 1.5rem 0;
+      text-align: center;
+      color: #ecf0f1; // Màu chữ tiêu đề
+    }
+  
+    nav {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        li {
+          margin: 0.5rem 0;
+  
+          a {
+            text-decoration: none;
+            color: #ecf0f1; // Màu chữ mặc định
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center; // Căn giữa biểu tượng và chữ
+            border-radius: 8px; // Bo tròn cạnh
+            transition: background-color 0.3s ease;
+  
+            i {
+              margin-right: 1rem; // Khoảng cách giữa biểu tượng và chữ
+              font-size: 1.2rem; // Kích thước biểu tượng
+            }
+  
+            &:hover {
+              background-color: #34495e; // Màu nền khi hover
+              color: #1abc9c; // Màu chữ khi hover
+            }
+          }
+        }
+      }
+    }
+  
+    .profile {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+      img {
+        width: 50px; // Kích thước avatar
+        height: 50px;
+        border-radius: 50%; // Bo tròn avatar
+        margin-right: 1rem;
+      }
+  
+      .info {
+        display: flex;
+        flex-direction: column;
+  
+        span {
+          font-size: 1rem;
+        }
+  
+        .name {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  

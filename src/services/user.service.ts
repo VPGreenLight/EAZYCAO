@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user.model';
+import { PagedResponse } from '../interfaces/page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,11 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<{ items: User[] }> {
-    return this.http.get<{ items: User[] }>(`${this.baseUrl}`);
+  getUsers(pageIndex: number, pageSize: number): Observable<PagedResponse<User>> {
+    const params = new HttpParams()
+      .set('pageIndex', pageIndex.toString())
+      .set('pageSize', pageSize.toString());
+    return this.http.get<PagedResponse<User>>(`${this.baseUrl}`, { params });
   }
 
   createUser(newUser: User): Observable<User> {

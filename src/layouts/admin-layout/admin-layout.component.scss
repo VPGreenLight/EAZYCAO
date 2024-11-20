@@ -1,40 +1,23 @@
-.admin-container {
-  display: flex;
-}
+.admin-layout {
+  display: flex; // Sử dụng Flexbox để sắp xếp các phần tử ngang
 
-.sidebar {
-  width: 250px;
-  background-color: #333;
-  color: white;
-  padding: 15px;
-
-  h2 {
-    font-size: 1.5em;
-    color: #f0f0f0;
+  .sidebar {
+    width: 260px; // Chiều rộng sidebar
+    height: 100vh; // Chiều cao toàn màn hình
+    background-color: #2c3e50; // Màu nền sidebar
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); // Đổ bóng
+    position: fixed; // Cố định sidebar
+    top: 0;
+    left: 0;
   }
 
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-
-    li {
-      margin: 10px 0;
-
-      a {
-        color: #ccc;
-        text-decoration: none;
-        font-size: 1em;
-
-        &:hover {
-          color: white;
-        }
-      }
-    }
+  .content {
+    margin-left: 260px; // Chừa khoảng trống bằng chiều rộng sidebar
+    padding: 20px; // Khoảng cách nội dung
+    flex: 1; // Phần này chiếm toàn bộ không gian còn lại
+    background-color: #f4f6f9; // Màu nền nội dung
+    overflow-y: auto; // Cuộn khi nội dung dài
+    min-height: 100vh; // Đảm bảo chiều cao tối thiểu
   }
 }
 
-.content {
-  flex: 1;
-  padding: 20px;
-  background-color: #f5f5f5;
-}
