@@ -37,7 +37,7 @@ export class ProductService {
     });
     return this.http.get<Product>(`${this.apiUrl}/${id}`, { headers });
   }
-  
+
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product);
   }
@@ -46,7 +46,6 @@ export class ProductService {
     return this.http.put<void>(`${this.apiUrl}/${id}`, product);
   }
   
-
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

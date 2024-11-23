@@ -14,7 +14,7 @@ export class UserOrderHistoryComponent implements OnInit {
   transactionHistory: any[] = [];
   depositHistory: any[] = [];
   currentView: 'order' | 'deposit' = 'order'; // Mặc định là lịch sử giao dịch
-
+  
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -25,7 +25,10 @@ export class UserOrderHistoryComponent implements OnInit {
   loadOrderHistory(): void {
     this.userService.getOrderHistory().subscribe({
       next: (data) => {
-        this.transactionHistory = data;
+        this.transactionHistory = data.map((order) => ({
+          ...order,
+          showDetails: false, // Thêm thuộc tính showDetails để ẩn/hiện chi tiết
+        }));
       },
       error: (err) => {
         console.error('Error fetching order history:', err);
@@ -54,4 +57,9 @@ export class UserOrderHistoryComponent implements OnInit {
       this.loadDepositHistory();
     }
   }
+
+    // Ẩn/hiện chi tiết đơn hàng
+    toggleDetails(order: any): void {
+      order.showDetails = !order.showDetails;
+    }
 }

@@ -28,19 +28,54 @@
             <th>Ngày</th>
             <th>Số lượng</th>
             <th>Giá</th>
+            <th>Chi tiết</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let order of transactionHistory; let i = index">
+        <tbody *ngFor="let order of transactionHistory; let i = index">
+          <tr >
             <td>{{ i + 1 }}</td>
             <td>{{ order.productName }}</td>
             <td>{{ order.date | date: 'dd/MM/yyyy HH:mm' }}</td>
             <td>{{ order.quantity }}</td>
             <td>{{ order.totalPrice * 1000 | currencySuffix }}</td>
+            <td>
+              <!-- Nút xem chi tiết -->
+              <button 
+                class="details-button" 
+                (click)="toggleDetails(order)"
+              >
+                {{ order.showDetails ? 'Ẩn' : 'Xem' }} chi tiết
+              </button>
+            </td>
+          </tr>
+    
+          <!-- Hàng hiển thị chi tiết đơn hàng -->
+          <tr *ngIf="order.showDetails" class="details-row">
+            <td colspan="6">
+              <table class="details-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Serial</th>
+                    <th>Code</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let detail of order.orderDetails; let j = index">
+                    <td>{{ j + 1 }}</td>
+                    <td>{{ detail.productName }}</td>
+                    <td>{{ detail.serial }}</td>
+                    <td>{{ detail.code }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
+    
   
     <!-- Bảng lịch sử nạp tiền -->
     <div *ngIf="currentView === 'deposit'">
